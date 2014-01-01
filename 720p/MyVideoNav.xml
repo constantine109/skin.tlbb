@@ -1,0 +1,460 @@
+<window id="25">
+	<defaultcontrol always="true">56</defaultcontrol>
+  <allowoverlay>yes</allowoverlay>
+	<views>56,50,51,52,53,54,58,580,55,560,561,57</views>
+  <backgroundcolor>0</backgroundcolor>
+  <onload condition="Skin.HasSetting(HideThumbnailsVideos)">SetFocus(50)</onload>
+	<!-- <onload condition="![Library.HasContent(movies) | Library.HasContent(tvshows)] + !Window.Previous(Startup) + ![stringcompare(Container.FolderPath,addons://sources/video/) | substring(Container.FolderPath,plugin://plugin.video,left)]">ActivateWindow(1110)</onload> -->
+	<onload condition="System.HasAddon(script.tv.show.next.aired) + Library.HasContent(TVShows) + Skin.HasSetting(NextAiredEnabled)">RunScript(script.tv.show.next.aired,backend=True)</onload>
+  <onload condition="System.HasAddon(script.tvtunes) + Library.HasContent(TVShows) + !Player.HasMedia + Skin.HasSetting(TVTunesEnabled)">RunScript(script.tvtunes,backend=True&amp;loop=False)</onload>
+	<onload condition="IsEmpty(Skin.String(ListViewWideThumbTVShows))">Skin.SetString(ListViewWideThumbTVShows,1)</onload>
+	<onload condition="IsEmpty(Skin.String(GalleryViewWideThumbTVShows))">Skin.SetString(GalleryViewWideThumbTVShows,1)</onload>
+	<controls>
+	 <include>BackgroundItems</include>
+	 <include>VideoViews</include>
+   <include condition="Skin.HasSetting(Show3DWallViewVideos)">3DWallView_Videos</include> <!-- id = 53 -->
+   <include condition="Skin.HasSetting(ShowWallViewVideos)">WallView_Videos</include> <!-- id = 54 -->
+   <include condition="Skin.HasSetting(ShowListWallViewVideos)">ListWallView_Videos</include> <!-- id = 58 -->
+   <include condition="!Skin.HasSetting(HidePostersViewVideos)">PostersView_Videos</include> <!-- id = 55 -->
+   <include condition="!Skin.HasSetting(HideVideoWallFanartViewVideos)">VideoWallFanartView</include> <!-- id = 580 -->
+   <include condition="Skin.HasSetting(EnableNextAiredNotifications) + Skin.HasSetting(NextAiredEnabled)">NextAiredNotifications</include>
+   <include>CommonItems</include>
+
+
+   <!-- ============ -->
+   <!-- Options Menu  -->
+   <!-- ============ -->
+	 <control type="group" id="9000">
+		<posx>30</posx>
+		<posy>25</posy>
+    <include>ShutdownMenuAnimation</include>
+    <include>OptionsTopMenuAnimation</include>
+    <animation type="Conditional"  reversible="false" condition="![Window.IsActive(MovieInformation) | Window.IsActive(AddonInformation) | Window.IsActive(favourites)]">
+      <effect type="fade" start="0" end="100" time="300" tween="sine" easing="in"  />
+      <effect type="slide" start="0,35" end="0,0" time="350" tween="cubic" easing="out" />
+    </animation>
+    <animation type="Conditional" reversible="false" condition="Window.IsActive(MovieInformation) | Window.IsActive(AddonInformation) | Window.IsActive(favourites)">
+      <effect type="fade" start="100" end="0" time="300" tween="sine" easing="out" />
+      <effect type="slide" start="0,0" end="0,35" time="350" tween="sine" easing="out" />
+    </animation>
+    <!-- General Options -->
+    <control type="group">
+      <include>GeneralOptionsTopMenuAnimation</include>
+      <control type="image">
+        <posx>0</posx>
+        <posy>-12</posy>
+				<width>380</width>
+				<height>75</height>
+				<texture>dialogs/menus/topmenus_options.png</texture>
+        <aspectratio>stretch</aspectratio>
+      </control>
+      <control type="image">
+        <posx>0</posx>
+        <posy>581</posy>
+				<width>380</width>
+				<height>22</height>
+				<texture>dialogs/menus/bottom.png</texture>
+        <aspectratio>stretch</aspectratio>
+        <animation effect="slide" start="0,0" end="0,-37" time="0" condition="!Control.IsVisible(70)">Conditional</animation>
+        <animation effect="slide" start="0,0" end="0,-37" time="0" condition="!Control.IsVisible(97)">Conditional</animation>
+        <animation effect="slide" start="0,0" end="0,37" time="0" condition="Control.IsVisible(95)">Conditional</animation>
+      </control>
+			<control type="label">
+        <posx>75</posx>
+			  <label>$LOCALIZE[33063] $LOCALIZE[33061]</label>
+			  <include>TopBigLabel</include>
+			</control>      
+    </control>
+	  <control type="grouplist" id="9111">
+			<posx>0</posx>
+			<posy>63</posy>
+			<width>380</width>
+			<height>557</height>
+			<itemgap>0</itemgap>
+			<onleft>50</onleft>
+			<onright>50</onright>
+			<onup>9111</onup>
+			<ondown>9111</ondown>
+      <include>GeneralOptionsTopMenuAnimation</include>
+			<control type="image.">
+				<width>380</width>
+				<height>24</height>
+				<texture>dialogs/menus/top.png</texture>
+				<aspectratio>stretch</aspectratio>
+		  </control>
+			<control type="button" id="2">
+				<description>View as</description>
+			  <include>TopLeftMenusButton</include>
+			</control>
+			<control type="button" id="95">
+				<description>Viewtype Options</description>
+			  <label>31014</label>
+				<onclick>SetFocus(9222)</onclick>
+			  <include>TopLeftMenusButton</include>
+			  <visible>[Control.IsVisible(50) + [Container.Content(TVShows) | Container.Content(Seasons)]] | [Control.IsVisible(52) + [Container.Content(TVShows) | Container.Content(Seasons)]] | [Control.IsVisible(55) + Container.Content(Movies)] | [Control.IsVisible(560) + [Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Window.IsVisible(VideoPlaylist)]]</visible>
+			</control>
+			<control type="button" id="3">
+				<description>Sort by</description>
+			  <include>TopLeftMenusButton</include>
+			</control>
+			<control type="togglebutton" id="4">
+				<description>Ascending/Descending</description>
+        <label>584</label>
+        <altlabel>585</altlabel>
+			  <include>TopLeftMenusButton</include>
+			</control>
+			<control type="button" id="10">
+				<description>Watched/Unwatched Toggle</description>
+			  <include>TopLeftMenusButton</include>
+			</control>
+			<control type="button" id="99">
+				<description>Files</description>
+				<label>744</label>
+			  <include>TopLeftMenusButton</include>
+        <onclick>ActivateWindow(Videos,Files,return)</onclick>
+				<selected>Window.IsVisible(videos)</selected>
+        <onclick>SetFocus(50)</onclick>
+			</control>
+			<control type="radiobutton" id="170">
+				<description>Flatten</description>
+				<label>$LOCALIZE[20411]: $VAR[FlattenButtonOnOff]</label>
+			  <include>TopLeftMenusButton</include>
+				<onclick>SendClick(17)</onclick>
+			</control>
+			<control type="radiobutton" id="70">
+				<description>Stack</description>
+				<label>$LOCALIZE[14000]: $VAR[SatckButtonOnOff]</label>
+			  <include>TopLeftMenusButton</include>
+				<onclick>SendClick(7)</onclick>
+	      <visible>!SubString(Container.FolderPath,videodb://)</visible>
+			</control>
+			<control type="button" id="19">
+				<description>Filter</description>
+				<label>587</label>
+			  <include>TopLeftMenusButton</include>
+				<visible>Container.CanFilter + !Container.CanFilterAdvanced</visible>
+        <onclick>SetFocus(50)</onclick>
+			</control>
+			<control type="button" id="20">
+				<description>Filter</description>
+				<label>587</label>
+			  <include>TopLeftMenusButton</include>
+				<visible>Container.CanFilterAdvanced</visible>
+        <onclick>SetFocus(50)</onclick>
+				<onclick>Filter</onclick>
+			</control>
+			<control type="button" id="8">
+				<description>Search</description>
+				<label>137</label>
+        <onclick>SetFocus(50)</onclick>
+			  <include>TopLeftMenusButton</include>
+			</control>
+			<control type="button" id="97">
+				<description>TVGuide</description>
+			  <include>TopLeftMenusButton</include>
+				<label>31001</label>
+				<onclick>XBMC.RunScript(script.tv.show.next.aired)</onclick>
+        <visible>[Container.Content(TVShows) | Container.Content(Seasons)| Container.Content(Episodes)] + System.HasAddon(script.tv.show.next.aired)</visible>
+			</control>
+			<control type="button" id="251">
+				<description>Red - Switch View</description>
+				<label>$LOCALIZE[457]</label>
+				<texturefocus>dialogs/menus/topmenus_red_fo.png</texturefocus>
+				<texturenofocus>dialogs/menus/topmenus_red_nf.png</texturenofocus>
+			  <textoffsety>8</textoffsety>
+			  <include>TopLeftMenusButton</include>
+				<onclick>Container.NextViewMode</onclick>
+			</control>
+			<control type="button" id="252">
+				<description>Green - Media Info</description>
+				<label>$LOCALIZE[544]</label>
+				<texturefocus>dialogs/menus/topmenus_green_fo.png</texturefocus>
+				<texturenofocus>dialogs/menus/topmenus_green_nf.png</texturenofocus>
+			  <textoffsety>8</textoffsety>
+			  <include>TopLeftMenusButton</include>
+			  <enable>Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)</enable>
+        <onclick>SetFocus(50)</onclick>
+				<onclick>Info</onclick>
+			</control>
+			<control type="button" id="253">
+				<description>Yellow - Search</description>
+				<label>$LOCALIZE[137]</label>
+				<texturefocus>dialogs/menus/topmenus_yellow_fo.png</texturefocus>
+				<texturenofocus>dialogs/menus/topmenus_yellow_nf.png</texturenofocus>
+			  <textoffsety>8</textoffsety>
+			  <include>TopLeftMenusButton</include>
+				<onclick>SendClick(8)</onclick>
+			</control>
+			<control type="button." id="254">
+				<description>Blue - All/UnWatched/Watched </description>
+				<label>$LOCALIZE[593]/$LOCALIZE[16102]/$LOCALIZE[16101]</label>
+				<texturefocus>dialogs/menus/topmenus_blue_fo.png</texturefocus>
+				<texturenofocus>dialogs/menus/topmenus_blue_nf.png</texturenofocus>
+			  <textoffsety>8</textoffsety>
+			  <include>TopLeftMenusButton</include>
+				<onclick>SendClick(10)</onclick>
+			</control>
+			<control type="button" id="254">
+				<description>Blue - Short by</description>
+				<label>Sort</label>
+				<texturefocus>dialogs/menus/topmenus_blue_fo.png</texturefocus>
+				<texturenofocus>dialogs/menus/topmenus_blue_nf.png</texturenofocus>
+			  <textoffsety>8</textoffsety>
+			  <include>TopLeftMenusButton</include>
+				<onclick>SendClick(3)</onclick>
+			</control>
+	  </control>
+
+    <!-- Viewtype Options Buttons (Not Visible) -->
+		<control type="grouplist" id="9222">
+			<posx>0</posx>
+			<posy>63</posy>
+			<width>380</width>
+			<height>520</height>
+			<itemgap>0</itemgap>
+			<onleft>9111</onleft>
+			<onright>9111</onright>
+			<onup>9222</onup>
+			<ondown>9222</ondown>
+			<control type="button" id="290">
+				<description>ListView WideThumb (TVShows)</description>
+        <label>$LOCALIZE[31217]: $VAR[FanartThumbsOptionsLabels]</label>
+		    <onclick condition="Stringcompare(Skin.String(ListViewWideThumbTVShows),3)">Skin.SetString(ListViewWideThumbTVShows,1)</onclick>
+		    <onclick condition="Stringcompare(Skin.String(ListViewWideThumbTVShows),2)">Skin.SetString(ListViewWideThumbTVShows,3)</onclick>
+		    <onclick condition="Stringcompare(Skin.String(ListViewWideThumbTVShows),1)">Skin.SetString(ListViewWideThumbTVShows,2)</onclick>
+		    <onclick condition="Stringcompare(Skin.String(ListViewWideThumbTVShows),3)">Skin.SetString(ListViewWideThumbTVShows,1)</onclick>
+			  <include>TopButton</include>
+			  <visible>Control.IsVisible(50) + [Container.Content(TVShows) | Container.Content(Seasons)]</visible>
+			</control>
+			<control type="button" id="291">
+				<description>GalleryView WideThumb (TVShows)</description>
+        <label>$LOCALIZE[31217]: $VAR[FanartThumbsOptionsLabels]</label>
+		    <onclick condition="Stringcompare(Skin.String(GalleryViewWideThumbTVShows),3)">Skin.SetString(GalleryViewWideThumbTVShows,1)</onclick>
+		    <onclick condition="Stringcompare(Skin.String(GalleryViewWideThumbTVShows),2)">Skin.SetString(GalleryViewWideThumbTVShows,3)</onclick>
+		    <onclick condition="Stringcompare(Skin.String(GalleryViewWideThumbTVShows),1)">Skin.SetString(GalleryViewWideThumbTVShows,2)</onclick>
+		    <onclick condition="Stringcompare(Skin.String(GalleryViewWideThumbTVShows),3)">Skin.SetString(GalleryViewWideThumbTVShows,1)</onclick>
+			  <include>TopButton</include>
+			  <visible>Control.IsVisible(52) + [Container.Content(TVShows) | Container.Content(Seasons)]</visible>
+			</control>
+			<control type="togglebutton" id="292">
+				<description>Disable Posters Flashing Cinema Lights</description>
+			  <include>TopButton</include>
+        <label>$LOCALIZE[31124]: $LOCALIZE[31012]</label>
+        <altlabel>$LOCALIZE[31124]: $LOCALIZE[31011]</altlabel>
+				<onclick>Skin.ToggleSetting(FlashingCinemaLights)</onclick>
+				<selected>Skin.HasSetting(FlashingCinemaLights)</selected>
+			  <visible>Control.IsVisible(55) + Container.Content(Movies)</visible>
+			</control>
+			<control type="togglebutton" id="293">
+			  <description>Show Info (Thumbnails View)</description>
+        <label>$LOCALIZE[22081]: $LOCALIZE[31012]</label>
+        <altlabel>$LOCALIZE[22081]: $LOCALIZE[31011]</altlabel>
+			  <include>TopButton</include>
+				<onclick>Skin.ToggleSetting(ThumbnailShowInfo)</onclick>
+			  <onclick>Reloadskin</onclick>
+				<selected>Skin.HasSetting(ThumbnailShowInfo)</selected>
+			  <visible>Control.IsVisible(560) + [Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Window.IsVisible(VideoPlaylist)]</visible>
+			</control>
+		</control>
+    <!-- Viewtype Options Panel -->
+    <control type="group">
+      <include>ViewtypeOptionsTopMenuAnimation</include>
+      <control type="image">
+        <posx>0</posx>
+        <posy>-12</posy>
+				<width>380</width>
+				<height>75</height>
+				<texture>dialogs/menus/topmenus_options.png</texture>
+        <aspectratio>stretch</aspectratio>
+      </control>
+      <control type="image">
+        <posx>0</posx>
+        <posy>100</posy>
+				<width>380</width>
+				<height>22</height>
+				<texture>dialogs/menus/bottom.png</texture>
+        <aspectratio>stretch</aspectratio> 
+      </control>
+			<control type="label">
+        <posx>75</posx>
+			  <label>$LOCALIZE[31014]</label>
+			  <include>TopBigLabel</include>
+			</control>
+		</control>
+    <!-- Viewtype Options Labels -->
+		<control type="grouplist">
+			<posx>0</posx>
+			<posy>63</posy>
+			<width>380</width>
+			<height>520</height>
+			<itemgap>0</itemgap>
+      <include>ViewtypeOptionsTopMenuAnimation</include>
+			<control type="button">
+				<description>ListView WideThumb (TVShows)</description>
+			  <include>TopLeftViewtypeOptionsButton</include>
+        <label>$INFO[Control.GetLabel(290)]</label>
+				<animation effect="fade" start="100" end="70" time="200" tween="cubic" easing="inout" condition="!ControlGroup(9222).HasFocus(290)" reversible="true">Conditional</animation>
+			  <visible>Control.IsVisible(50) + [Container.Content(TVShows) | Container.Content(Seasons)]</visible>
+			</control>
+			<control type="button">
+				<description>GalleryView WideThumb (TVShows)</description>
+			  <include>TopLeftViewtypeOptionsButton</include>
+        <label>$INFO[Control.GetLabel(291)]</label>
+				<animation effect="fade" start="100" end="70" time="200" tween="cubic" easing="inout" condition="!ControlGroup(9222).HasFocus(291)" reversible="true">Conditional</animation>
+			  <visible>Control.IsVisible(52) + [Container.Content(TVShows) | Container.Content(Seasons)]</visible>
+			</control>
+			<control type="button">
+				<description>Flashing Cinema Lights On</description>
+			  <include>TopLeftViewtypeOptionsButton</include>
+        <label>$INFO[Control.GetLabel(292)]</label>
+				<animation effect="fade" start="100" end="70" time="200" tween="cubic" easing="inout" condition="!ControlGroup(9222).HasFocus(292)" reversible="true">Conditional</animation>
+			  <visible>Control.IsVisible(55) + Container.Content(Movies)</visible>
+			</control>
+			<control type="button">
+			  <description>Show Info (Thumbnails View)</description>
+			  <include>TopLeftViewtypeOptionsButton</include>
+        <label>$INFO[Control.GetLabel(293)]</label>
+				<animation effect="fade" start="100" end="70" time="200" tween="cubic" easing="inout" condition="!ControlGroup(9222).HasFocus(293)" reversible="true">Conditional</animation>
+			  <visible>Control.IsVisible(560) + [Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Window.IsVisible(VideoPlaylist)]</visible>
+			</control>
+		</control>
+
+	 </control>
+
+   <!-- ============================ -->
+   <!-- OptionsMenu Top Content Info -->
+   <!-- ============================
+		<control type="grouplist.">
+			<posx>75</posx>
+			<posy>0</posy>
+			<height>70</height>
+			<width>1000</width>
+			<align>left</align>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+	    <include>OpenCloseSlideAnimation</include>
+		  <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus</visible>
+			<control type="label">
+			  <include>TopBigLabel</include>
+			  <label>$LOCALIZE[33063] $LOCALIZE[33061]</label>
+			</control>
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[3]</label>
+	      <visible>IsEmpty(Container.FolderName) | Container.Content(Files)</visible>
+			</control>			
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$INFO[Container.FolderName]</label>
+	      <visible>![Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes) | Container.Content(MusicVideos) | Container.Content(Files)]</visible>
+			</control>
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[20389]</label>
+	      <visible>Container.Content(MusicVideos)</visible>
+			</control>
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[20342]</label>
+	      <visible>Container.Content(Movies) | Container.Content(Sets)</visible>
+			</control>
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[31002]</label>
+	      <visible>Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)</visible>
+			</control>
+		</control>
+	 </control> -->
+
+
+   <!-- ================ -->
+   <!-- Top Content Info -->
+   <!-- ================ -->
+   <control type="group">
+		<posx>45</posx>
+		<posy>25</posy>
+    <include>OpenCloseSlideAnimation</include>
+    <include>VisibleHiddenSlideAnimation</include>
+		<include>ShutdownMenuAnimation</include>
+	  <visible>!ControlGroup(9000).HasFocus + !Window.IsActive(favourites) + !Window.IsActive(filestackingdialog) + !Window.IsActive(MovieInformation) + !Window.IsActive(AddonInformation)</visible>
+		<control type="grouplist">
+			<posx>55</posx>
+			<posy>0</posy>
+			<height>70</height>
+			<width>1000</width>
+			<align>left</align>
+			<itemgap>20</itemgap>
+			<orientation>horizontal</orientation>
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[3]</label>
+	      <visible>![Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)]</visible>
+			</control>
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[20389]</label>
+	      <visible>Container.Content(MusicVideos)</visible>
+			</control>
+			<control type="label">
+			  <include>TopZoomedSmallLabel</include>
+		    <label>$INFO[Container.FolderName]</label>
+	      <visible>![Container.Content(Movies) | Container.Content(Sets) | Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)]</visible>
+			</control>
+			<!-- Movies -->
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[20342]</label>
+	      <visible>Container.Content(Movies) | Container.Content(Sets)</visible>
+			</control>
+			<control type="label">
+			  <include>TopZoomedSmallLabel</include>
+		    <label>$INFO[Container.FolderName]</label>
+        <visible>Container.Content(Movies) | Container.Content(Sets)</visible>
+			</control>
+			<!-- TV Shows -->
+			<control type="label">
+			  <include>TopBigLabel</include>
+				<label>$LOCALIZE[31002]</label>
+	      <visible>Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)</visible>
+			</control>
+			<control type="label">
+			  <include>TopZoomedSmallLabel</include>
+		    <label>$INFO[Container.FolderName]</label>
+	      <visible>Container.Content(TVShows) | Container.Content(Seasons)</visible>
+			</control>
+			<control type="label">
+			  <include>TopZoomedSmallLabel</include>
+		    <label>$INFO[Container.FolderName]</label>
+	      <visible>SubString(Container.FolderPath,videodb://5/)</visible>
+			</control>
+			<control type="label">
+			  <include>TopZoomedSmallLabel</include>
+		    <label>$INFO[ListItem.TVShowTitle]</label>
+	      <visible>Container.Content(Episodes)</visible>
+			</control>
+			<control type="label">
+			  <include>TopZoomedSmallLabel</include>
+		    <label>$INFO[ListItem.Season,$LOCALIZE[20373] ]</label>
+	      <visible>Container.Content(Episodes) + !IsEmpty(ListItem.Season)</visible>
+			</control>
+		</control>
+   </control>
+
+	 <include>CommonWeatherAndClock</include>
+
+   <!-- ======================== -->
+   <!-- Hidden SendClick Buttons -->
+   <!-- ======================== -->
+	 <control type="radiobutton" id="17">
+		<description>Flatten</description>
+    <visible>false</visible>		
+	 </control>
+	 <control type="radiobutton" id="7">
+		<description>Stack</description>
+    <visible>false</visible>
+	 </control>
+	 <control type="label" id="00">
+    <visible>false</visible>
+	 </control>
+	</controls>
+</window>

@@ -1,0 +1,104 @@
+<includes>
+    <include file="ViewsVideos.xml" />
+    <include file="ViewsMusic.xml" />
+    <include file="ViewsPictures.xml" />
+    <include file="ViewsPrograms.xml" />
+    <include file="ViewsAddons.xml" />
+	  <include file="ViewsPVR.xml" />
+
+    <include name="VideoViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Videos</include> <!-- id = 50 -->
+      <include condition="!Skin.HasSetting(HideSlideViewVideos)">SlideView_Videos</include> <!-- id = 51 -->
+      <include condition="!Skin.HasSetting(HideGalleryViewVideos)">GalleryView_Videos</include> <!-- id = 52 -->
+      <include condition="!Skin.HasSetting(HideThumbnailsVideos)">ThumbnailsView</include> <!-- id = 56 -->
+      <include condition="!Skin.HasSetting(HideThumbnailsVideos)">ThumbnailsView_Videos_Posters</include> <!-- id = 560 -->
+      <include condition="!Skin.HasSetting(HideThumbnailsVideos)">ThumbnailsView_Videos_Landscape</include> <!-- id = 561 -->
+      <include condition="!Skin.HasSetting(HideBannersViewVideos)">BannersView_Videos</include> <!-- id = 57 -->
+     </control>
+    </include>
+
+    
+    <include name="MusicLibraryViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Music</include> <!-- id = 50 -->
+      <include condition="!Skin.HasSetting(HideSlideViewMusic)">SlideView_Music</include> <!-- id = 51 -->
+      <include condition="!Skin.HasSetting(HideGalleryViewMusic)">GalleryView_Music</include> <!-- id = 52 -->
+      <include condition="!Skin.HasSetting(HideThumbnailsMusic)">ThumbnailsView</include> <!-- id = 56 -->
+      <include condition="!Skin.HasSetting(HideBannersViewMusic)">BannersView_Music</include> <!-- id = 57 -->
+     </control>
+    </include>
+    
+    <include name="MusicFilesViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Music</include> <!-- id = 50 -->
+      <include condition="!Skin.HasSetting(HideThumbnailsMusic)">ThumbnailsView</include> <!-- id = 56 -->
+     </control>
+    </include>
+
+    <include name="PicturesViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Pictures</include> <!-- id = 50 -->
+      <include>GalleryView_Pictures</include> <!-- id = 52 -->
+      <include>ThumbnailsView</include> <!-- id = 56 -->
+     </control>
+    </include>
+
+    <include name="ProgramsViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Addons</include> <!-- id = 50 -->
+      <include>ThumbnailsView</include> <!-- id = 56 -->
+     </control>
+    </include>
+    
+    <include name="AddonsViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Addons</include> <!-- id = 50 -->
+      <include>ThumbnailsView</include> <!-- id = 56 -->
+     </control>
+    </include>
+    
+    <include name="VideoPlaylistViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Videos</include> <!-- id = 50 -->
+      <include condition="!Skin.HasSetting(HideBannersViewVideos)">BannersView_Videos</include> <!-- id = 57 -->
+     </control>
+    </include>
+    
+    <include name="MusicPlaylistViews">
+     <control type="group">
+      <include>OpenCloseSlideAnimation</include>
+      <include>ListView_Music</include> <!-- id = 50 -->
+      <include condition="!Skin.HasSetting(HideSlideViewMusic)">SlideView_Music</include> <!-- id = 51 -->
+      <include condition="!Skin.HasSetting(HideThumbnailsMusic)">ThumbnailsView</include> <!-- id = 56 -->
+      <include condition="!Skin.HasSetting(HideBannersViewMusic)">BannersView_Music</include> <!-- id = 57 -->
+     </control>
+    </include>
+
+    <include name="PVRViews">
+     <control type="group" id="50">
+			<control type="image">
+			  <include>FullscreenDimensions</include>
+				<texture background="true">windows/pvr/bg_overlay.png</texture>
+        <colordiffuse>D9FFFFFF</colordiffuse>
+			  <include>FanartFade</include>
+			</control>
+			<include>LiveTV_ChannelsView</include> <!-- view id = 11 -->
+			<include>LiveRadio_ChannelsView</include> <!-- view id = 12 -->
+			<include>LiveTV_EPGTimelineView</include> <!-- view id = 10 -->
+			<include>LiveTV_EPGNowNextView</include> <!-- view id = 16 -->
+			<include>LiveTV_EPGChannelView</include> <!-- view id = 15 -->
+			<include>LiveTV_RecordingsView</include> <!-- view id = 13 -->
+			<include>LiveTV_TimersView</include> <!-- view id = 14 -->
+			<include>LiveTV_SearchView</include> <!-- view id = 17 -->
+     </control>
+    </include>
+
+</includes>    

@@ -1,0 +1,142 @@
+<window type="dialog">
+	<defaultcontrol>1001</defaultcontrol>
+	<controls>
+
+	  <!-- ============ -->
+	  <!-- Context Menu -->
+	  <!-- ============ -->
+		<control type="grouplist" id="9222">
+			<posx>30</posx>
+			<posy>13</posy>
+			<width>380</width>
+			<height max="520">auto</height>
+			<itemgap>0</itemgap>
+			<onleft>Close</onleft>
+			<onright>Close</onright>
+	    <include>OpenCloseSlideAnimation</include>
+      <include>ShutdownMenuAnimation</include>
+			<control type="image">
+				<width>360</width>
+				<height>75</height>
+				<texture border="15,0,15,0">dialogs/menus/topmenus_context.png</texture>
+				<aspectratio>stretch</aspectratio>
+		  </control>
+			<control type="button" id="991">
+				<description>button template</description>
+		    <width>360</width>
+				<texturefocus border="15,0,15,0">dialogs/menus/topmenus_fo.png</texturefocus>
+				<texturenofocus border="15,0,15,0">dialogs/menus/topmenus_nf.png</texturenofocus>
+		    <include>TopLeftMenusButton</include>
+        <label>$INFO[Control.GetLabel(1001)]</label>
+			  <onclick>SendClick(1001)</onclick>
+			</control>
+			<control type="button" id="992">
+				<description>button template</description>
+		    <width>360</width>
+				<texturefocus border="15,0,15,0">dialogs/menus/topmenus_fo.png</texturefocus>
+				<texturenofocus border="15,0,15,0">dialogs/menus/topmenus_nf.png</texturenofocus>
+		    <include>TopLeftMenusButton</include>
+        <label>$INFO[Control.GetLabel(1002)]</label>
+			  <onclick>SendClick(1002)</onclick>
+        <visible>!IsEmpty(Control.GetLabel(1002))</visible>
+			</control>
+			<control type="button" id="993">
+				<description>button template</description>
+		    <width>360</width>
+				<texturefocus border="15,0,15,0">dialogs/menus/topmenus_fo.png</texturefocus>
+				<texturenofocus border="15,0,15,0">dialogs/menus/topmenus_nf.png</texturenofocus>
+		    <include>TopLeftMenusButton</include>
+        <label>$INFO[Control.GetLabel(1003)]</label>
+			  <onclick>SendClick(1003)</onclick>
+        <visible>!IsEmpty(Control.GetLabel(1003))</visible>
+			</control>
+			<control type="image">
+				<width>360</width>
+				<height>22</height>
+				<texture border="15,0,15,0">dialogs/menus/bottom.png</texture>
+				<aspectratio>stretch</aspectratio>
+		  </control>
+		</control>
+
+	  <!-- ================ -->
+	  <!-- Top Content Info -->
+	  <!-- ================ -->
+	  <control type="group">
+			<posx>105</posx>
+			<posy>25</posy>
+	    <include>OpenCloseSlideAnimation</include>
+	    <include>VisibleHiddenSlideAnimation</include>
+	    <include>ShutdownMenuAnimation</include>
+			<control type="grouplist">
+				<posx>0</posx>
+				<posy>0</posy>
+				<height>70</height>
+				<width>1000</width>
+				<align>left</align>
+				<aligny>center</aligny>
+				<itemgap>20</itemgap>
+				<orientation>horizontal</orientation>
+				<control type="label">
+				  <include>TopBigLabel</include>
+					<label>31009</label>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>20342</label>
+					<visible>Control.IsVisible(110)</visible>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>31002</label>
+					<visible>Control.IsVisible(120)</visible>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>20360</label>
+					<visible>Control.IsVisible(140)</visible>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>20389</label>
+					<visible>Control.IsVisible(150)</visible>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>133</label>
+					<visible>Control.IsVisible(160)</visible>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>132</label>
+					<visible>Control.IsVisible(170)</visible>
+				</control>
+				<control type="label">
+				  <include>TopZoomedSmallLabel</include>
+					<label>134</label>
+					<visible>Control.IsVisible(180)</visible>
+				</control>
+			</control>
+	  </control>
+
+    <control type="button" id="1001">
+      <visible allowhiddenfocus="true">false</visible>
+      <onfocus>SetFocus(991)</onfocus>
+    </control>
+    <control type="button" id="1002">
+      <visible>false</visible>
+    </control>
+    <control type="button" id="1003">
+      <visible>false</visible>
+    </control>
+    <control type="image" id="997">
+      <visible>false</visible>
+    </control>
+    <control type="image" id="998">
+      <visible>false</visible>
+    </control>
+    <control type="image" id="999">
+      <visible>false</visible>
+    </control>
+
+	</controls>
+</window>

@@ -1,0 +1,569 @@
+<window id="1111">
+	<defaultcontrol always="true">4000</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+	<controls>
+
+	 <include>BackgroundItems</include>
+	 
+	 <control type="group">
+    <include>OpenCloseSlideAnimation</include>
+    <include>VisibleHiddenSlideAnimation</include>
+    <include>DialogZoomInOutAnimation</include>
+		<visible>![Window.IsActive(PlayerControls) + ![Skin.HasSetting(DisableQuickNav) + !Player.HasMedia]] + !Window.IsActive(videos,sources://video/) + !Window.IsActive(MusicFiles) + !Window.IsActive(selectdialog) + !Window.IsActive(progressdialog) + !Window.IsActive(screencalibration) + !Window.IsActive(1110) + !Window.IsActive(141)</visible>
+		<control type="image">
+		  <include>FullscreenDimensions</include>
+		  <texture background="true">windows/settings/bg_help.png</texture>
+		</control>
+
+		<!-- ========================= -->
+		<!-- == Help Topics Buttons == -->
+		<!-- ========================= -->
+		<control type="group" id="4000">
+			<posx>98</posx>
+			<posy>166</posy>
+			<control type="list" id="4001">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>295</width>
+				<height>399</height>
+				<itemgap>1</itemgap>
+				<onleft>10000</onleft>
+				<onright>5000</onright>
+				<onup>4001</onup>
+				<ondown>10000</ondown>
+				<pagecontrol>-</pagecontrol>
+				<scrolltime>300</scrolltime>
+				<itemlayout height="50" width="295">
+					<control type="label">
+						<posx>280</posx>
+						<posy>0</posy>
+						<width>295</width>
+						<height>49</height>
+				    <font>FontSize_20</font>
+						<textcolor>77white</textcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="50" width="295">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>295</width>
+						<height>49</height>
+						<texture>windows/settings/settings_left_fo.png</texture>
+						<animation effect="fade" start="100" end="40" time="100" condition="!Control.HasFocus(4001)">Conditional</animation>
+					</control>
+					<control type="label">
+						<posx>280</posx>
+						<posy>0</posy>
+						<width>295</width>
+						<height>49</height>
+				    <font>FontSize_20</font>
+						<textcolor>white</textcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+				<content>
+					<item id="1">
+						<label>Welcome</label>
+					  <onclick>Control.Move(4001,1)</onclick>
+					</item>
+					<item id="2">
+						<label>Screen Setup</label>
+					  <onclick>ActivateWindow(screencalibration)</onclick>
+				 	</item>
+					<item id="3">
+						<label>WiFi Network</label>
+					  <onclick>Control.Move(4001,1)</onclick>
+					  <onclick>ActivateWindow(accesspoints)</onclick>
+					</item>
+					<item id="4">
+						<label>Region Add-ons</label>
+					  <onclick>ActivateWindow(videos,plugin://plugin.video.tlbbwizard)</onclick>
+					</item>
+					<item id="5">
+						<label>Video Library</label>
+					  <onclick>ActivateWindow(videos,sources://video/)</onclick>
+					</item>
+					<item id="6">
+						<label>Music Library</label>
+					  <onclick>ActivateWindow(MusicFiles)</onclick>
+					</item>
+					<item id="7">
+						<label>Customization</label>
+					  <onclick>ActivateWindow(Settings)</onclick>
+				 	</item>
+				</content>
+			</control>
+
+			<control type="group" id="5000">
+
+				<!-- ============= -->
+				<!-- == Welcome == -->
+				<!-- ============= -->
+				<control type="grouplist" id="5001">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(1)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5001</onup>
+					<ondown>5001</ondown>
+					<control type="textbox">
+						<description>Help Screen 1</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31421][CR][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>60</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="60">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>60</ondown>
+					<onup>60</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(1)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(60)">Conditional</animation>
+				</control>
+
+				<!-- ======================== -->
+				<!-- == Screen Calibration == -->
+				<!-- ======================== -->
+				<control type="grouplist" id="5002">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(2)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5002</onup>
+					<ondown>5002</ondown>
+					<control type="textbox">
+						<description>Help Screen 2</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31422][CR][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>62</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="62">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>62</ondown>
+					<onup>62</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(2)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(62)">Conditional</animation>
+				</control>
+
+				<!-- ================ -->
+				<!-- == WiFi Setup == -->
+				<!-- ================ -->
+				<control type="grouplist" id="5003">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(3)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5003</onup>
+					<ondown>5003</ondown>
+					<control type="textbox">
+						<description>Help Screen 3</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31423][CR][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>63</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="63">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>63</ondown>
+					<onup>63</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(3)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(63)">Conditional</animation>
+				</control>
+
+				<!-- ============================= -->
+				<!-- == Region Addons Installer == -->
+				<!-- ============================= -->
+				<control type="grouplist" id="5004">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(4)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5004</onup>
+					<ondown>5004</ondown>
+					<control type="textbox">
+						<description>Help Screen 4</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31424][CR][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>64</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="64">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>64</ondown>
+					<onup>64</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(4)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(64)">Conditional</animation>
+				</control>
+
+
+				<!-- =================== -->
+				<!-- == Video Library == -->
+				<!-- =================== -->
+				<control type="grouplist" id="5005">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(5)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5005</onup>
+					<ondown>5005</ondown>
+					<control type="textbox">
+						<description>Help Screen 5</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31425][CR][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>65</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="65">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>65</ondown>
+					<onup>65</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(5)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(65)">Conditional</animation>
+				</control>
+
+
+				<!-- =================== -->
+				<!-- == Music Library == -->
+				<!-- =================== -->
+				<control type="grouplist" id="5006">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(6)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5006</onup>
+					<ondown>5006</ondown>
+					<control type="textbox">
+						<description>Help Screen 6</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31426][CR][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>66</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="66">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>66</ondown>
+					<onup>66</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(6)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(66)">Conditional</animation>
+				</control>
+
+				<!-- =================== -->
+				<!-- == Customization == -->
+				<!-- =================== -->
+				<control type="grouplist" id="5007">
+					<include>CloseAnimation</include>
+					<visible>Container(4001).Hasfocus(7)</visible>
+					<posx>316</posx>
+					<posy>10</posy>
+					<width>782</width>
+					<height>399</height>
+					<itemgap>1</itemgap>
+					<onleft>4001</onleft>
+					<onright>9000</onright>
+					<onup>5004</onup>
+					<ondown>5004</ondown>
+					<control type="textbox">
+						<description>Help Screen 7</description>
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>745</width>
+						<height>385</height>
+						<label>$LOCALIZE[31427][CR]TLBB Team</label>
+						<font>FontSize_20</font>
+						<align>justify</align>
+						<textcolor>99white</textcolor>
+						<shadowcolor>99000000</shadowcolor>
+						<pagecontrol>67</pagecontrol>
+					</control>
+				</control>
+				<control type="scrollbar" id="67">
+					<posx>1070</posx>
+					<posy>15</posy>
+					<width>8</width>
+					<height>385</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbar>
+					<texturesliderbarfocus border="0,16,0,16">views/scrollbar/scrollbar.png</texturesliderbarfocus>
+					<textureslidernib>-</textureslidernib>
+					<textureslidernibfocus>-</textureslidernibfocus>
+					<onleft>4001</onleft>
+					<onright>4001</onright>
+					<ondown>67</ondown>
+					<onup>67</onup>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+          <colordiffuse>AAFFFFFF</colordiffuse>
+					<visible>Container(4001).Hasfocus(7)</visible>
+			    <animation effect="fade" start="100" end="0" time="150" condition="!Control.HasFocus(67)">Conditional</animation>
+				</control>
+
+
+			</control>
+		</control>
+
+
+		<!-- ============================ -->
+    <!-- == Header & Footer Labels == -->
+		<!-- ============================ -->
+		<control type="group">
+			<posx>120</posx>
+			<posy>163</posy>
+			<visible>Window.IsVisible(Custom_FirstTimeHelp.xml)</visible>
+			<control type="label">
+				<description>Header Category Label</description>
+				<posx>0</posx>
+				<posy>-50</posy>
+				<width>1075</width>
+				<height>50</height>
+				<font>FontSize_36</font>
+				<label>The Little Black Box - Help Guide</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>white</textcolor>
+				<shadowcolor>99000000</shadowcolor>
+			</control>
+		</control>
+
+
+	  <control type="group" id="10000">
+			<posx>107</posx>
+			<posy>583</posy>
+			<visible>Window.IsVisible(Custom_FirstTimeHelp.xml)</visible>
+      <!-- Buttons -->
+			<control type="grouplist" id="10001">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>0</width>
+				<height>0</height>
+				<itemgap>0</itemgap>
+				<align>left</align>
+				<orientation>horizontal</orientation>
+				<onleft>10001</onleft>
+				<onright>10001</onright>
+				<onup>4000</onup>
+				<ondown>4000</ondown>
+				<control type="button" id="20">
+					<description>Cancel</description>
+				  <width>250</width>
+				  <height>40</height>
+					<texturefocus border="100,0,100,0">dialogs/buttons/cancel_fo.png</texturefocus>
+					<texturenofocus border="100,0,100,0">dialogs/buttons/cancel_nf.png</texturenofocus>
+					<align>left</align>
+					<aligny>top</aligny>
+					<font>FontSize_20</font>
+					<textwidth>310</textwidth>
+					<textoffsetx>40</textoffsetx>
+					<textoffsety>6</textoffsety>
+					<textcolor>99grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<shadowcolor>99000000</shadowcolor>
+				  <label>13009</label>
+			    <onclick>Action(back)</onclick>
+			    <visible>!Window.Previous(Startup)</visible>
+				</control>
+				<control type="button" id="20">
+					<description>Cancel</description>
+				  <width>250</width>
+				  <height>40</height>
+					<texturefocus border="100,0,100,0">dialogs/buttons/save_fo.png</texturefocus>
+					<texturenofocus border="100,0,100,0">dialogs/buttons/save_nf.png</texturenofocus>
+					<align>left</align>
+					<aligny>top</aligny>
+					<font>FontSize_20</font>
+					<textwidth>310</textwidth>
+					<textoffsetx>40</textoffsetx>
+					<textoffsety>6</textoffsety>
+					<textcolor>99grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<shadowcolor>99000000</shadowcolor>
+				  <label>Skip this guide</label>
+			    <onclick>Action(back)</onclick>
+			    <visible>Window.Previous(Startup)</visible>
+				</control>
+				<control type="button" id="30">
+					<description>Save</description>
+				  <width>250</width>
+				  <height>40</height>
+					<texturefocus border="100,0,100,0">dialogs/buttons/cancel_fo.png</texturefocus>
+					<texturenofocus border="100,0,100,0">dialogs/buttons/cancel_nf.png</texturenofocus>
+					<align>left</align>
+					<aligny>top</aligny>
+					<font>FontSize_20</font>
+					<textwidth>310</textwidth>
+					<textoffsetx>40</textoffsetx>
+					<textoffsety>5</textoffsety>
+					<textcolor>99grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<shadowcolor>99000000</shadowcolor>
+				  <label>Don't show this guide again</label>
+					<onclick>Skin.Setbool(FirstTimeRun)</onclick>
+			    <onclick>Action(back)</onclick>
+			    <visible>Window.Previous(Startup)</visible>
+				</control>
+			</control>
+	  </control>
+	 </control>
+
+	 <include>CommonNowPlaying</include>
+	 <include>CommonDialogsFadeOutBG</include>
+	 <include>SettingsCategoryContentInfo</include>
+	 <include>SettingsWeatherAndClock</include>
+	</controls>
+</window>
