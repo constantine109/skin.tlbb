@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon id="skin.tlbb" version="2.3.2" name="The Little Black Box" provider-name="Nessus">
   <requires>
 		<import addon="xbmc.gui" version="4.0.0"/>
@@ -32,23 +32,7 @@
     <summary lang="th">ส่วนติดต่อผู้ใช้ สำหรับศูนย์รวมสื่อ XBMC</summary>
     <summary lang="zh">XBMC媒体中心的一个图形用户界面</summary>
     <description lang="en">TLBB is a GUI for XBMC Media Center based on Bello skin by Nessus. The goal of The Little Black Box is to maximize your media entertainment experience with it's fast, unique and unified interface along with all the latest features of XBMC.</description>
-    <disclaimer lang="de">Maus nicht unterstützt</disclaimer>
-    <disclaimer lang="el">Χωρίς υποστήριξη για ποντίκι</disclaimer>
-    <disclaimer lang="en">Mouse usage is not supported</disclaimer>
-    <disclaimer lang="es">El uso de ratón no esta soportado</disclaimer>
-    <disclaimer lang="fr">L'utilisation de la souris n'est pas supportée.</disclaimer>
-    <disclaimer lang="gl">Uso do rato non soportado</disclaimer>
-    <disclaimer lang="hu">Egér használata nem támogatott</disclaimer>
-    <disclaimer lang="it">L'utilizzo del Mouse non è suportato</disclaimer>
-    <disclaimer lang="ko">마우스 지원 안 함</disclaimer>
-    <disclaimer lang="lt">Pelės naudojimas nepalaikomas</disclaimer>
-    <disclaimer lang="pl">Używanie myszki nie jest obsługiwane</disclaimer>
-    <disclaimer lang="pt">Não é possível utilizar o rato</disclaimer>
-    <disclaimer lang="pt_BR">Uso de mouse não é suportado</disclaimer>
-    <disclaimer lang="ru">Использование мыши не поддерживается</disclaimer>
-    <disclaimer lang="sv">Att använda musen fungerar inte</disclaimer>
-    <disclaimer lang="th">ไม่รองรับการใช้งานด้วยเมาท์</disclaimer>
-    <disclaimer lang="zh">不支持使用鼠标</disclaimer>
+    <disclaimer lang="en">TLBB Skin is created by the guys at http://www.thelittleblackbox.nl/en/.</disclaimer>
     <platform>all</platform>
     <license>Creative Commons Attribution-NonCommercial-Share Alike 3.0 Unported License</license>
     <source>https://github.com/j1nx/TLBB</source>
